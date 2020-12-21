@@ -29,7 +29,17 @@ import org.junit.internal.AssumptionViolatedException;
 
 class Base {
 
+    private static final boolean RANDOMIZE_FAILURES = Boolean.getBoolean("com.cloudbees.test.randomize");
+
     protected void run() {
+        if (RANDOMIZE_FAILURES) {
+            randomizeResults();
+        } else {
+            assertTrue(true);
+        }
+    }
+
+    private void randomizeResults() {
         double r = Math.random();
         if (r < 0.1) {
             fail("oops");
