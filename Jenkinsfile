@@ -13,7 +13,7 @@ pipeline {
     stage('Run') {
       steps {
         container('maven') {
-          sh 'mvn -B -ntp -Dmaven.test.failure.ignore verify'
+          sh 'mvn -B -ntp -Dmaven.test.failure.ignore -Dcom.cloudbees.test.randomize=true verify'
         }
       }
     }
